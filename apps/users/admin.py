@@ -6,26 +6,57 @@ from .models import User
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
+
+    fieldsets = UserAdmin.fieldsets + (
+        (
+            "Additional Information",
+            {
+                "fields": (
+                    "role",
+                    "phone",
+                    "department",
+                    "designation",
+                )
+            },
+        ),
+    )
+
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        (
+            "Additional Information",
+            {
+                "fields": (
+                    "email",
+                    "role",
+                    "phone",
+                    "department",
+                    "designation",
+                )
+            },
+        ),
+    )
+
     list_display = (
         "username",
         "email",
-        "first_name",
-        "last_name",
-        "is_staff",
+        "role",
+        "department",
+        "designation",
         "is_active",
+        "is_staff",
     )
 
     list_filter = (
-        "is_staff",
+        "role",
+        "department",
         "is_active",
-        "is_superuser",
+        "is_staff",
     )
 
     search_fields = (
         "username",
         "email",
-        "first_name",
-        "last_name",
+        "phone",
+        "department",
+        "designation",
     )
-
-    ordering = ("username",)

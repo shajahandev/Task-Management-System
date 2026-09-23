@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Task
+from .models import Task, TaskAttachment
 
 
 @admin.register(Task)
@@ -32,4 +32,26 @@ class TaskAdmin(admin.ModelAdmin):
     autocomplete_fields = (
         "assigned_to",
         "created_by",
+    )
+
+@admin.register(TaskAttachment)
+class TaskAttachmentAdmin(admin.ModelAdmin):
+    list_display = (
+        "task",
+        "file",
+        "uploaded_by",
+        "uploaded_at",
+    )
+
+    list_filter = (
+        "uploaded_at",
+    )
+
+    search_fields = (
+        "task__title",
+        "uploaded_by__username",
+    )
+
+    readonly_fields = (
+        "uploaded_at",
     )
