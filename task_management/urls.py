@@ -15,6 +15,11 @@ urlpatterns = [
         "api/",
         include("apps.users.urls"),
     ),
+     # Tasks
+    path(
+        "api/",
+        include("apps.tasks.urls"),
+    ),
 
     # JWT Login
     path(

@@ -26,7 +26,10 @@ class Task(models.Model):
     assigned_to = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
+        null=True,
+        blank=True,
         related_name="assigned_tasks"
+        
     )
 
     created_by = models.ForeignKey(
